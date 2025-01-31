@@ -1,5 +1,5 @@
 <?php
-    
+    echo"feur";
     // Configuration de la connexion à la base de données
     $host = 'lamp_mysql';
     $dbname = 'Utilisateur'; 
