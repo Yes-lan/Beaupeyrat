@@ -1,7 +1,7 @@
 <?php
     // Affiche "feur" sur la page
-    echo "feur";
-
+    echo "test branche";
+    
     // Configuration des paramètres de connexion à la base de données
     $host = 'lamp_mysql';               // Nom de l'hôte MySQL
     $dbname = 'Utilisateur';            // Nom de la base de données
