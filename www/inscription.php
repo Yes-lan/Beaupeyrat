@@ -8,10 +8,12 @@
     </head> 
 <body>    
 <div class="wrapper">
+    <!-- Boutons de navigation -->
     <button class="boutton_retour" onclick="window.location.href='./Choix.php'">Return</button>
     <button class="boutton_enregistrement" onclick="window.location.href='./Form.php'">login</button>
     <div id="formContent">
 
+        <!-- Formulaire d'inscription -->
         <form method="post" action="./Register.php"> 
             
             <input type="text" id="login" name="login" placeholder="login" required>
@@ -33,12 +35,14 @@
         </form>
         <div id="result">
             <?php
+                // Vérification si le formulaire a été soumis
                 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     if (isset($_POST['check'])) {
                         $_POST['login'] = "" ;
                     } else {
                         echo "La case n'est pas cochée.";
                     }
+                    // Affichage des valeurs soumises
                     if (!empty ($_POST['login'])){
                         echo "<p>Login: " . htmlspecialchars($_POST['login']) . "</p>";
                     }
@@ -61,6 +65,7 @@
 document.getElementById('togglePassword').addEventListener('click', function (e) {
     var passwordField = document.getElementById('password');
     var icon = e.target;
+    // Bascule entre le type 'password' et 'text' pour afficher ou masquer le mot de passe
     if (passwordField.type === 'password') {
         passwordField.type = 'text';
         icon.classList.remove('fa-eye');
