@@ -29,7 +29,7 @@
 
     <div id="formContent">
         <!-- Formulaire de connexion -->
-        <form method="post">
+        <form method="post" action="./confirmation_Login.php">
             <input type="text" id="login" class="fadeIn second" name="login" placeholder="login" required>
 
             <!-- Champ mot de passe avec icône pour afficher/masquer le mot de passe -->
@@ -42,7 +42,7 @@
             <input type="checkbox" id="check" name="check" value="true"> se souvenir de moi 
 
             <!-- Bouton de soumission du formulaire -->
-            <input type="submit" name="Valider" class="fadeIn fourth" value="Se connecter">
+            <input type="submit" name="Valider" class="fadeIn fourth" value="Se connecter" >
         </form>
 
         <?php
