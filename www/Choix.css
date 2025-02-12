@@ -1,21 +1,21 @@
 /* Style général */
 body {
     font-family: 'Roboto', sans-serif;
-    background: linear-gradient(135deg, #4CAF50, #2E7D32); /* Dégradé de vert */
+    background: linear-gradient(135deg, #A3F7B5, #40C9A2); /* Dégradé de vert */
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    color: #fff;
+    color: #664147;
 }
 
 .wrapper {
     width: 100%;
     max-width: 400px;
     margin: auto;
-    background-color: rgba(0, 0, 0, 0.8); /* Fond noir semi-transparent */
+    background-color: rgba(47, 156, 149, 0.8); /* Fond noir semi-transparent */
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     overflow: hidden;
@@ -32,8 +32,8 @@ body {
 .boutton_connexion,
 .boutton_inscription {
     width: 100%;
-    background: linear-gradient(135deg, #1B5E20, #4CAF50); /* Dégradé de vert */
-    color: white;
+    background: linear-gradient(135deg, #2F9C95, #40C9A2); /* Dégradé de vert */
+    color:black;
     border: none;
     border-radius: 50px;
     padding: 20px;
@@ -48,14 +48,14 @@ body {
 .boutton_connexion:hover,
 .boutton_inscription:hover {
     transform: scale(1.05);
-    background: linear-gradient(135deg, #4CAF50, #1B5E20); /* Dégradé de vert inversé */
+    background: linear-gradient(135deg, #40C9A2, #2F9C95); /* Dégradé de vert inversé */
 }
 
 /* Bouton de soumission */
 input[type="submit"] {
     width: 100%;
-    background: linear-gradient(135deg, #1B5E20, #4CAF50); /* Dégradé de vert */
-    color: white;
+    background: linear-gradient(135deg, #2F9C95, #40C9A2); /* Dégradé de vert */
+    color: Black;
     border: none;
     border-radius: 50px;
     padding: 20px;
@@ -68,21 +68,21 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
     transform: scale(1.05);
-    background: linear-gradient(135deg, #4CAF50, #1B5E20); /* Dégradé de vert inversé */
+    background: linear-gradient(135deg, #40C9A2, #2F9C95); /* Dégradé de vert inversé */
 }
 
 /* Texte et liens */
 span {
     display: inline-block;
     font-size: 14px;
-    color: #ddd;
+    color: Black;
     margin: 10px 0;
 }
 
 #result {
     margin-top: 20px;
     font-size: 14px;
-    color: #fff;
+    color: Black;
     text-align: left;
     border-top: 1px solid rgba(255, 255, 255, 0.3);
     padding-top: 10px;

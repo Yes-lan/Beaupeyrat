@@ -13,6 +13,7 @@
 <head>
     <title>Page de connexion du Formulaire</title>
     <meta charset="UTF-8"> <!-- Encodage des caractères -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
 
     <!-- Feuille de style  -->
     <link href="./form.css" rel="stylesheet">
