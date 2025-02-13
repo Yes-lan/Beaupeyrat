@@ -30,12 +30,12 @@
 
     <div id="formContent">
         <!-- Formulaire de connexion -->
-        <form method="post" action="./confirmation_Login.php">
-            <input type="text" id="login" class="fadeIn second" name="login" placeholder="login" required>
+        <form method="post" action="./Bingo.php">
+            <input type="text" id="login" name="login" placeholder="login" required>
 
             <!-- Champ mot de passe avec icône pour afficher/masquer le mot de passe -->
             <div style="position: relative; width: 80%; margin: 15px auto;">
-                <input type="password" id="password" class="fadeIn third" name="password" placeholder="password" required style="width: 100%; padding-right: 40px;">
+                <input type="password" id="password"  name="password" placeholder="password" required style="width: 100%; padding-right: 40px;">
                 <i class="fas fa-eye" id="togglePassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
             </div>
 
@@ -43,7 +43,7 @@
             <input type="checkbox" id="check" name="check" value="true"> se souvenir de moi 
 
             <!-- Bouton de soumission du formulaire -->
-            <input type="submit" name="Valider" class="fadeIn fourth" value="Se connecter" >
+            <input type="submit" name="Valider" value="Se connecter" action="./Bingo.php" >
         </form>
 
         <?php
