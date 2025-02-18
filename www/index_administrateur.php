@@ -1,17 +1,6 @@
 <?php
-    // Configuration des paramètres de connexion à la base de données
-    $host = 'lamp_mysql';               // Nom de l'hôte MySQL
-    $dbname = 'Utilisateur';            // Nom de la base de données
-    $username = 'root';                 // Nom d'utilisateur MySQL
-    $password = 'rootpassword';         // Mot de passe de l'utilisateur
+require './connexion_BDD.php'; // Inclusion du fichier de connexion à la base de données
 
-    try {
-        $pdo = new PDO("mysql:host=lamp_mysql;dbname=$dbname;charset=utf8", $username, $password);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Active le mode d'erreur exception
-    } catch (PDOException $e) {
-        // Affiche une erreur en cas d'échec de connexion
-        die("Erreur de connexion : " . $e->getMessage());
-    }
     // Construction de la requête SQL
     $sql = "SELECT * FROM user";
     
@@ -27,14 +16,28 @@
 <!DOCTYPE html>
 <head>
     <head>
-        <link rel="stylesheet" href="admin.css">
+        <link rel="stylesheet" href="./style/admin.css">
     </head>
 
     <body>
     <h1>Page d'administration</h1>
     <p>Vous êtes connecté en tant qu'administrateur</p>
         <table>
-            <tr><th><a href="index.php">Retour à l'accueil</a></th></tr>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Email</th>
+            </tr>
+            <?php
+        // Parcours des résultats de la requête et affichage dans le tableau
+        foreach ($pdo as $row) {
+            echo "<tr>";
+            echo "<td>" . htmlspecialchars($row['id']) . "</td>";
+            echo "<td>" . htmlspecialchars($row['nom']) . "</td>";
+            echo "<td>" . htmlspecialchars($row['email']) . "</td>";
+            echo "</tr>";
+        }
+        ?>
         </table>
-    </body>
+    </body> 
 </html>

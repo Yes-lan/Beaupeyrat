@@ -1,12 +1,5 @@
 <?php
-    // Affiche "feur" sur la page
-    echo "test branche";
-    
-    // Configuration des paramètres de connexion à la base de données
-    $host = 'lamp_mysql';               // Nom de l'hôte MySQL
-    $dbname = 'Utilisateur';            // Nom de la base de données
-    $username = 'root';                 // Nom d'utilisateur MySQL
-    $password = 'rootpassword';         // Mot de passe de l'utilisateur
+    require './connexion_BDD.php'; // Inclusion du fichier de connexion à la base de données
 ?>
 
 <html>
@@ -16,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
 
     <!-- Feuille de style  -->
-    <link href="./form.css" rel="stylesheet">
+    <link href="./style/form.css" rel="stylesheet">
     <!-- Importation de Font Awesome pour les icônes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>

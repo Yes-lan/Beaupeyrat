@@ -1,0 +1,18 @@
+
+.menu{
+    margin: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: right;
+    padding: 10px 0;
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.index{
+    margin-right:10px;
+    margin-left:10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #343a40;
+}
