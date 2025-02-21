@@ -1,5 +1,7 @@
 <?php
-    require './connexion_BDD.php'; // Inclusion du fichier de connexion à la base de données
+    require './tools/Fonctions.php'; // Inclusion du fichier de fonctions
+    connexion()
+    
 ?>
 
 <html>
@@ -15,46 +17,42 @@
 </head>
 <body>
 <div class="wrapper">
-    <!-- Bouton de retour vers la page Choix.php -->
-    <button class="boutton_retour" onclick="window.location.href='./Choix.php'">Return</button>
 
-    <!-- Bouton de redirection vers la page d'inscription -->
-    <button class="boutton_enregistrement" onclick="window.location.href='./inscription.php'">Register</button>
-
+    
     <div id="formContent">
         <!-- Formulaire de connexion -->
-        <form method="post" action="./Bingo.php">
+        <form method="post" >
             <input type="text" id="login" name="login" placeholder="login" required>
-
+            
+            <br>
             <!-- Champ mot de passe avec icône pour afficher/masquer le mot de passe -->
             <div style="position: relative; width: 80%; margin: 15px auto;">
                 <input type="password" id="password"  name="password" placeholder="password" required style="width: 100%; padding-right: 40px;">
                 <i class="fas fa-eye" id="togglePassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
             </div>
-
+            
+            
             <!-- Case à cocher pour se souvenir de l'utilisateur -->
             <input type="checkbox" id="check" name="check" value="true"> se souvenir de moi 
+            
+            <br>
+            <br>
+            <!-- Bouton de redirection vers la page d'inscription -->
+    <button class="boutton_enregistrement" onclick="window.location.href='./inscription.php'">inscription</button>
 
             <!-- Bouton de soumission du formulaire -->
-            <input type="submit" name="Valider" value="Se connecter" action="./Bingo.php" >
+            <input type="submit" name="Valider" value="Se connecter"  >
         </form>
 
         <?php
         // Vérifie si le formulaire a été soumis
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            // Tentative de connexion à la base de données
-            try {
-                $pdo = new PDO("mysql:host=lamp_mysql;dbname=$dbname;charset=utf8", $username, $password);
-                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Active le mode d'erreur exception
-            } catch (PDOException $e) {
-                // Affiche une erreur en cas d'échec de connexion
-                die("Erreur de connexion : " . $e->getMessage());
-            }
-
             // Vérifie que les champs login et password ne sont pas vides
             if (!empty($_POST['login']) && !empty($_POST['password'])) {
                 $login = $_POST['login'];
                 $password = $_POST['password'];
+                $role = $_POST['role'];
+            
 
                 // Préparation de la requête SQL pour sécuriser contre les injections SQL
                 $sql = "SELECT * FROM user WHERE login = :login";
@@ -67,6 +65,9 @@
                 // Vérifie si un utilisateur correspond au login saisi
                 if ($stmt->rowCount() > 0) {
                     $user = $stmt->fetch(PDO::FETCH_ASSOC);
+                    
+                    if (password_verify($role, $user['role'])) {
+                        header("./index_administrateur.php");
 
                     // Vérifie si le mot de passe saisi correspond au mot de passe haché en base de données
                     if (password_verify($password, $user['password'])) {
@@ -81,6 +82,7 @@
                 // Message si les champs ne sont pas remplis
                 echo "Veuillez entrer un login et un mot de passe.";
             }
+        }
         } 
         ?>
     </div>

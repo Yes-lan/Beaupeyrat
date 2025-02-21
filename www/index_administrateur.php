@@ -1,43 +1,52 @@
 <?php
-require './connexion_BDD.php'; // Inclusion du fichier de connexion à la base de données
+require './tools/Fonctions.php';
+require './tools/header.php';
 
+    $pdo = connexion();
     // Construction de la requête SQL
     $sql = "SELECT * FROM user";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();   
     
-    // Vérification de la création de la table
-    if ($pdo->exec($sql) === false) {
-        echo "Erreur lors de la création de la table.";
-    }
-    else {
-        echo "La table a été créée avec succès.";// pour fermer la connexion à la base de données
-    }
-
 ?>
 <!DOCTYPE html>
-<head>
     <head>
-        <link rel="stylesheet" href="./style/admin.css">
+        <link rel="stylesheet" href="./style/index_administrateur.css">
     </head>
-
     <body>
-    <h1>Page d'administration</h1>
-    <p>Vous êtes connecté en tant qu'administrateur</p>
-        <table>
-            <tr>
-                <th>ID</th>
-                <th>Nom</th>
-                <th>Email</th>
-            </tr>
-            <?php
-        // Parcours des résultats de la requête et affichage dans le tableau
-        foreach ($pdo as $row) {
-            echo "<tr>";
-            echo "<td>" . htmlspecialchars($row['id']) . "</td>";
-            echo "<td>" . htmlspecialchars($row['nom']) . "</td>";
-            echo "<td>" . htmlspecialchars($row['email']) . "</td>";
-            echo "</tr>";
-        }
-        ?>
-        </table>
-    </body> 
-</html>
+        <header>
+            <center>
+            <h1>Page Administrateur</h1>
+            </center>
+            
+        </header>
+        <div class="">
+            <nav> 
+                <ul class="menu">
+                    <li class="index"><a href="#accueil">Ajouter</a></li>
+                    <li class="index"><a href="#services">Modifier</a></li>
+                    <li class="index"><a href="#contact">Supprimer</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div>
+            <h2>Liste des utilisateurs</h2>
+            <table border="1" class="table">
+                <tr>
+                    <th>ID</th>
+                    <th>Login</th>
+                    <th>Email</th>
+                </tr>
+                <?php
+                // Parcours des résultats de la requête et affichage dans le tableau
+                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    echo "<tr>";
+                    echo "<td>" . htmlspecialchars($row['id']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['login']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['email']) . "</td>";
+                    echo "</tr>";
+                }
+                ?>
+            </table>
+        </div>
+    </body>

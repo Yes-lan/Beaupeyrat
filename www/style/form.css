@@ -57,9 +57,11 @@ input[type="password"]:focus {
 }
 
 input[type="checkbox"] {
+    padding-bottom: 5px; /* Espacement interne en bas */
+    margin-bottom: 15px;
     margin-right: 10px; /* Marge à droite */
     background-color: rgba(255, 255, 255, 0.1); /* Fond semi-transparent */
-    box-shadow: 0 8px 20px black; /* Ombre portée */
+    box-shadow: 0 4px 15px black; /* Ombre portée */
     overflow: hidden; /* Cache le débordement */
     backdrop-filter: blur(10px); /* Flou d'arrière-plan */
 }
@@ -96,17 +98,18 @@ input[type="checkbox"] {
 
 /* Bouton de soumission */
 input[type="submit"] {
-    width: 100%; /* Largeur de 100% */
+    width: 45%; /* Largeur de 45% */
     background: linear-gradient(135deg, #2F9C95, #40C9A2); /* Dégradé de vert */
     color: black; /* Couleur du texte */
     border: none; /* Pas de bordure */
-    border-radius: 50px; /* Bords arrondis */
-    padding: 20px; /* Espacement interne */
-    font-size: 18px; /* Taille de la police */
+    border-radius: 25px; /* Bords arrondis */
+    padding: 10px; /* Espacement interne réduit */
+    font-size: 16px; /* Taille de la police réduite */
     font-weight: bold; /* Texte en gras */
     cursor: pointer; /* Curseur pointeur */
     transition: all 0.3s; /* Transition douce */
     box-shadow: 0 4px 15px black; /* Ombre portée */
+    margin: 5px; /* Marge pour espacement entre les boutons */
 }
 
 input[type="submit"]:hover {
