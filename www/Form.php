@@ -34,11 +34,10 @@
             
             <!-- Case à cocher pour se souvenir de l'utilisateur -->
             <input type="checkbox" id="check" name="check" value="true"> se souvenir de moi 
-            
             <br>
             <br>
             <!-- Bouton de redirection vers la page d'inscription -->
-    <button class="boutton_enregistrement" onclick="window.location.href='./inscription.php'">inscription</button>
+            <button class="boutton_enregistrement" onclick="window.location.href='./inscription.php'">inscription</button>
 
             <!-- Bouton de soumission du formulaire -->
             <input type="submit" name="Valider" value="Se connecter"  >

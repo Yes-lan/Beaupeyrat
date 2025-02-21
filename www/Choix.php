@@ -1,3 +1,17 @@
+<?php
+
+// filepath: /c:/Users/Nolan/Desktop/COURS/1 année/Docker (lamp)/www/Choix.php
+
+if (isset($_POST['Valider_C']) == 'Connexion') { 
+    header('Location: ./Form.php');
+    exit; 
+}
+if (isset($_POST['Valider_I']) == 'Inscription') {
+    header('Location: ./Inscription.php');
+    exit; 
+    }
+echo"feur";
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,11 +22,9 @@
 <body>
     <div class="wrapper">
         <div id="formContent">
-            <form method="post" action="./Form.php">
-                <input type="submit" name="Valider" class="boutton_connexion" value="Connexion">
-            </form>
-            <form method="post" action="./inscription.php">
-                <input type="submit" name="Valider" class="boutton_inscription" value="Inscription">
+            <form method="post" >
+                <input type="submit" name="Valider_C" class="boutton_connexion" value="Connexion">
+                <input type="submit" name="Valider_I" class="boutton_inscription" value="Inscription">
             </form>
         </div>
     </div>

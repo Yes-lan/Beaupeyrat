@@ -2,38 +2,29 @@
     <head>
         <link rel="stylesheet" href="/style/form.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-        <title>Page de connexion du Formulaire</title>
+        <title>Page de d'inscription du Formulaire</title>
         <meta charset="UTF-8">
     </head> 
 <body>    
 <div class="wrapper">
     <div id="formContent">
-
         <!-- Formulaire d'inscription -->
-        <form method="post" action="./Register.php"> 
-            
+        <form method="post" action="./tools/Register.php"> 
             <input type="text" id="login" name="login" placeholder="login" required>
             <div style="position: relative; width: 80%; margin: auto;">
                 <input type="password" id="password" class="fadeIn third" name="password" placeholder="password" required style="width: 100%; padding-right: 40px;">
                 <i class="fas fa-eye" id="togglePassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
             </div>
-            
             <input type="email" id="email" name="email" placeholder="email" required>
             <br>
             <input type="text" id="user" name="user" placeholder="user" required> <!-- Nouveau champ pour le nom d'utilisateur -->
-            
             <br>
-
             <input type="checkbox" id="check" name="check" value="true"> se souvenir de moi 
-
             <center>
                 <!-- Boutons de navigation -->
                 <button class="boutton_enregistrement" onclick="window.location.href='./Form.php'">login</button>
                 <input type="submit" name="Valider" class="fadeIn fourth" value="S'inscrire">
-                
             </center>
-
         </form>
         <div id="result">
             <?php
