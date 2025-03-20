@@ -1,0 +1,132 @@
+/* Style général */
+body {
+    font-family: 'Lato','sans-serif',; /* Définit la police de caractères */
+    background: linear-gradient(135deg, #664147, #2F9C95); /* Dégradé de vert */
+    margin: 0; /* Supprime les marges par défaut */
+    padding: 0; /* Supprime les espacements internes par défaut */
+    display: flex; /* Utilise le modèle de boîte flexible */
+    justify-content: center; /* Centre horizontalement le contenu */
+    align-items: center; /* Centre verticalement le contenu */
+    height: 100vh; /* Hauteur de la fenêtre */
+    color: black; /* Couleur du texte */
+}
+
+.wrapper {
+    width: 100%; /* Largeur de 100% */
+    max-width: 400px; /* Largeur maximale de 400px */
+    margin: auto; /* Centre horizontalement */
+    background-color: rgba(47, 156, 149, 0.8); /* Fond noir semi-transparent */
+    border-radius: 20px; /* Bords arrondis */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Ombre portée */
+    overflow: hidden; /* Cache le débordement */
+    backdrop-filter: blur(10px); /* Flou d'arrière-plan */
+    padding: 10px; /* Espacement interne */
+}
+
+#formContent {
+    padding: 20px; /* Espacement interne */
+    text-align: center; /* Centre le texte */
+}
+
+/* Champ de formulaire */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 80%; /* Largeur de 80% */
+    padding: 15px; /* Espacement interne */
+    margin: 15px 0; /* Marges verticales */
+    border: 1px solid #40C9A2; /* Bordure verte */
+    border-radius: 10px; /* Bords arrondis */
+    font-size: 16px; /* Taille de la police */
+    background: #2F9C95; /* Fond vert foncé */
+    color: black; /* Couleur du texte */
+    outline: none; /* Supprime le contour par défaut */
+    transition: all 0.3s ease-in-out; /* Transition douce */
+}
+
+::placeholder {
+    color: black; /* Couleur du texte de l'espace réservé */
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    color: black; /* Couleur du texte */
+    border-color: #2F9C95; /* Couleur de la bordure */
+    background: #40C9A2; /* Fond vert */
+}
+
+input[type="checkbox"] {
+    margin-right: 10px; /* Marge à droite */
+    background-color: rgba(255, 255, 255, 0.1); /* Fond semi-transparent */
+    box-shadow: 0 8px 20px black; /* Ombre portée */
+    overflow: hidden; /* Cache le débordement */
+    backdrop-filter: blur(10px); /* Flou d'arrière-plan */
+}
+
+#togglePassword {
+    position: relative; /* Position relative */
+    left: 85%; /* Décalage à gauche */
+    top: -35px; /* Décalage vers le haut */
+    transform: translateY(-50%); /* Translation verticale */
+    color: black; /* Couleur verte */
+}
+
+.boutton_retour,
+.boutton_enregistrement {
+    width: 45%; /* Largeur de 45% */
+    background: linear-gradient(135deg, #2F9C95, #40C9A2); /* Dégradé de vert */
+    color: black; /* Couleur du texte */
+    border: none; /* Pas de bordure */
+    border-radius: 25px; /* Bords arrondis */
+    padding: 10px; /* Espacement interne réduit */
+    font-size: 16px; /* Taille de la police réduite */
+    font-weight: bold; /* Texte en gras */
+    cursor: pointer; /* Curseur pointeur */
+    transition: all 0.3s; /* Transition douce */
+    box-shadow: 0 4px 15px black; /* Ombre portée */
+    margin: 5px; /* Marge pour espacement entre les boutons */
+}
+
+.boutton_retour:hover,
+.boutton_enregistrement:hover {
+    transform: scale(1.05); /* Agrandissement au survol */
+    background: linear-gradient(135deg, #40C9A2, #2F9C95); /* Dégradé de vert inversé */
+}
+
+/* Bouton de soumission */
+input[type="submit"] {
+    width: 100%; /* Largeur de 100% */
+    background: linear-gradient(135deg, #2F9C95, #40C9A2); /* Dégradé de vert */
+    color: black; /* Couleur du texte */
+    border: none; /* Pas de bordure */
+    border-radius: 50px; /* Bords arrondis */
+    padding: 20px; /* Espacement interne */
+    font-size: 18px; /* Taille de la police */
+    font-weight: bold; /* Texte en gras */
+    cursor: pointer; /* Curseur pointeur */
+    transition: all 0.3s; /* Transition douce */
+    box-shadow: 0 4px 15px black; /* Ombre portée */
+}
+
+input[type="submit"]:hover {
+    transform: scale(1.05); /* Agrandissement au survol */
+    background: linear-gradient(135deg, #40C9A2, #2F9C95); /* Dégradé de vert inversé */
+}
+
+/* Texte et liens */
+span {
+    display: inline-block; /* Affichage en ligne */
+    font-size: 14px; /* Taille de la police */
+    color: black; /* Couleur du texte */
+    margin: 10px 0; /* Marges verticales */
+}
+
+#result {
+    margin-top: 20px; /* Marge en haut */
+    font-size: 14px; /* Taille de la police */
+    color: black; /* Couleur du texte */
+    text-align: left; /* Alignement à gauche */
+    border-top: 1px solid rgba(255, 255, 255, 0.3); /* Bordure en haut */
+    padding-top: 10px; /* Espacement interne en haut */
+}

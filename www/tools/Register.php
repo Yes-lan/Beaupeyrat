@@ -1,5 +1,4 @@
 <?php
-
     require './Fonctions.php'; // Inclusion du fichier de connexion à la base de données
 
 $pdo = connexion();

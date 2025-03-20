@@ -1,5 +1,9 @@
 <?php
 require('../tools/Fonctions.php');
+if (isset($_POST['Return']) && $_POST['Return'] == 'index') { 
+    header('Location: ./index_administrateur.php');
+    exit; 
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -13,16 +17,15 @@ require('../tools/Fonctions.php');
         <div id="formContent">
             <h2>Modifier un perso</h2>
             <form method="post" enctype="multipart/form-data">
+                <input type="submit" name="Return" class="boutton_return" value="index">
                 <input type="file" id="image" name="image">
                 <br><br>
-                <input type="text" id="name" name="Name" placeholder="Name" required>
-                <input type="text" id="familly" name="familly" placeholder="familly" required>
-                <input type="text" id="lore" name="lore" placeholder="lore" required>
+                <input type="text" id="name" name="Name" placeholder="Name" >
+                <input type="text" id="familly" name="familly" placeholder="familly" >
+                <input type="text" id="lore" name="lore" placeholder="lore" >
                 <input type="submit" value="Modifier" name="modifier">
             </form>
-            
 <?php
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['modifier'])) {
     // Connexion à la base de données
     $pdo = connexion();
@@ -69,7 +72,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['modifier'])) {
         } else {
             echo "<p style='color: red;'>Erreur lors de la mise à jour du personnage.</p>";
         }
-
     } else {
         // Préparation de la requête SQL
         $sql = "INSERT INTO perso (nom,famille,lore,image, image_type) VALUES (:name,:famille,:lore,:image, :image_type)";
@@ -80,7 +82,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['modifier'])) {
         $stmt->bindParam(':image', $imageData, PDO::PARAM_LOB);
         $stmt->bindParam(':image_type', $imageType);
         if ($stmt->execute()) {
-            echo "<p style='color: green;'>objet uploadée avec succès.</p>";
+            echo "<p style='color: green;'>Image uploadée avec succès.</p>";
+            $lastId = $pdo->lastInsertId();
+            echo "<script>document.body.style.backgroundImage = 'url(data:$imageType;base64," . base64_encode($imageData) . ")';</script>";
         } else {    
             echo "Erreur lors de l'upload de l'image.";
         }

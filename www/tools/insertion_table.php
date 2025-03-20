@@ -1,13 +1,15 @@
 <?php
 
+    require_once 'Fonctions.php';
 
+    $pdo = connexion();
 
     // Construction de la requête SQL
-    $sql = "CREATE TABLE IF NOT EXISTS  admi (
+    $sql = "CREATE TABLE IF NOT EXISTS  perso (
         id INT AUTO_INCREMENT PRIMARY KEY,
-        login VARCHAR(50) NOT NULL,
-        email VARCHAR(100) NOT NULL UNIQUE,
-        password VARCHAR(255) NOT NULL)";
+        lore VARCHAR(250) NOT NULL,
+        famille VARCHAR(150) NOT NULL UNIQUE,
+        lien VARCHAR(255) NOT NULL)";
 
 
     // Vérification de la création de la table
