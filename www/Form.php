@@ -1,6 +1,6 @@
 <?php
     require './tools/Fonctions.php'; // Inclusion du fichier de fonctions
-    connexion()
+    $pdo = connexion();
     
 ?>
 
@@ -50,7 +50,7 @@
             if (!empty($_POST['login']) && !empty($_POST['password'])) {
                 $login = $_POST['login'];
                 $password = $_POST['password'];
-                $role = $_POST['role'];
+                
             
 
                 // Préparation de la requête SQL pour sécuriser contre les injections SQL
@@ -65,8 +65,6 @@
                 if ($stmt->rowCount() > 0) {
                     $user = $stmt->fetch(PDO::FETCH_ASSOC);
                     
-                    if (password_verify($role, $user['role'])) {
-                        header("./index_administrateur.php");
 
                     // Vérifie si le mot de passe saisi correspond au mot de passe haché en base de données
                     if (password_verify($password, $user['password'])) {
@@ -82,7 +80,7 @@
                 echo "Veuillez entrer un login et un mot de passe.";
             }
         }
-        } 
+        
         ?>
     </div>
 </div>

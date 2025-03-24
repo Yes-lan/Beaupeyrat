@@ -35,8 +35,6 @@ if (isset($_POST['Valider'])) {
         // Affichage d'une erreur en cas de problème d'exécution de la requête
         die('Erreur : ' . $e->getMessage());
     }
-    if ($test) {
-        header('Location: ./Form.php');
-    }
+
 }
 ?>

@@ -1,62 +1,110 @@
 <?php
-    require('../tools/Fonctions.php');
-    if (isset($_POST['Return']) && $_POST['Return'] == 'index') { 
-        header('Location: ./index_administrateur.php');
-        exit; 
+include('../tools/Fonctions.php');
+if (isset($_POST['Return']) && $_POST['Return'] == 'index') { 
+    header('Location: ./index_administrateur.php');
+    exit; 
+}
+
+$pdo = connexion();
+
+if (isset($_GET['action']) && $_GET['action'] == 'add') {
+    echo "add";
+    $page = "add";
+}
+if (isset($_GET['action']) && $_GET['action'] == 'modify') {
+    echo "modify";
+    $page = "modify";
+}
+if (isset($_GET['action']) && $_GET['action'] == 'supr') {
+    echo "supr";
+    $page = "supr";
+}
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['valider']) && $_POST['valider'] == 'valider') {
+        if($page == "add"){
+            $name = $_POST['name'];
+            $familly = $_POST['familly'];
+            $lore = $_POST['lore'];
+            $sql = "INSERT INTO perso (nom, famille, lore) VALUES (:name, :familly, :lore)";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+            $stmt->bindParam(':familly', $familly, PDO::PARAM_STR);
+            $stmt->bindParam(':lore', $lore, PDO::PARAM_STR);
+            if ($stmt->execute()) {
+                echo "<p class='color: green;'>Objet ajouté avec succès.</p>";
+            } else {
+                echo "<p style='color: red;'>Erreur lors de l'ajout du objet.</p>";
+            }
+        }
+        if($page == "supr"){
+            $table = $_POST['table'];
+            $id = $_POST['id'];
+            $sql = "DELETE FROM $table WHERE id = :id";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            if ($stmt->execute()) {
+                echo "<p class='color: green;'>Objet supprimé avec succès.</p>";
+            } else {
+                echo "<p style='color: red;'>Erreur lors de la suppression du objet.</p>";
+            }
+        }
+        if($page == "modify"){
+            $name = $_POST['name'];
+            $familly = $_POST['familly'];
+            $lore = $_POST['lore'];
+            $id = $_POST['id'];
+            $sql = "UPDATE perso SET nom = :nom , famille = :familly, lore = :lore where id = :id";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':familly', $familly, PDO::PARAM_STR);
+            $stmt->bindParam(':lore', $lore, PDO::PARAM_STR);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->bindParam(':nom', $name, PDO::PARAM_INT);
+            
+        
+            if ($stmt->execute()) {
+                echo "<p class='color: green;'>Objet modifié avec succès.</p>";
+            } else {
+                echo "<p style='color: red;'>Erreur lors de la modification du objet.</p>";
+            }
+        }
     }
+}
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Ajouter un utilisateur</title>
+    <title>Ajouter un personnage</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../style/form.css">
 </head>
 <body>
     <div class="wrapper">
         <div id="formContent">
-            <h2>Ajouter un perso</h2>
-            <form method="post" enctype="multipart/form-data">
-                <input type="submit" name="Return" class="boutton_return" value="index">
-                <input type="file" id="image" name="image" >
-                <br><br>
-                <input type="text" id="name" name="Name" placeholder="Name" >
-                <input type="text" id="familly" name="familly" placeholder="familly" >
-                <input type="text" id="lore" name="lore" placeholder="lore" >
-                <input type="submit" value="Ajouter">
+        <form method="post" action="">
+            <input type="submit" name="Return" class="boutton_return" value="index">
+        </form>
+            <form method="post">
+                <?php
+                if ($page == "modify") {
+                    echo '<input type="text" name="id" placeholder="ID">';
+                    echo '<input type="text" id="name" name="name" placeholder="Nom">';
+                    echo'<input type="text" id="familly" name="familly" placeholder="Famille" >';
+                    echo '<input type="text" id="lore" name="lore" placeholder="Lore" >';
+                }
+                if ($page == "supr") {
+                    echo '<input type="text" id="table" name="table" placeholder="Table" >';
+                    echo '<input type="text" id="id" name="id" placeholder="ID">';
+                    
+                }
+                if ($page == "add") {
+                    echo '<input type="text" id="name" name="name" placeholder="Nom">';
+                    echo '<input type="text" id="familly" name="familly" placeholder="Famille" >';
+                    echo '<input type="text" id="lore" name="lore" placeholder="Lore" >';
+                }
+                ?>
+                <input type="submit" name="valider" value="valider">
             </form>
-<?php
-        if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
-            $imageData = file_get_contents($_FILES['image']['tmp_name']);
-            $imageType = $_FILES['image']['type'];
 
-
-            // Connexion à la base de données
-            $pdo = connexion();
-            $name = $_POST['Name'];
-            $familly = $_POST['familly'];
-            $lore = $_POST['lore'];
-
-
-            // Préparation de la requête SQL
-            $sql = "INSERT INTO perso (nom,famille,lore,image, image_type) VALUES (:name,:famille,:lore,:image, :image_type)";
-            $stmt = $pdo->prepare($sql);
-            $stmt->bindParam(':name',$name);
-            $stmt->bindParam(':famille', $familly);
-            $stmt->bindParam(':lore', $lore);
-            $stmt->bindParam(':image', $imageData, PDO::PARAM_LOB);
-            $stmt->bindParam(':image_type', $imageType);
-            $stmt->execute();
-            if ($stmt->execute()) {
-                echo "<p style='color: green;'>Image uploadée avec succès.</p>";
-                $lastId = $pdo->lastInsertId();
-                echo "<script>document.body.style.backgroundImage = 'url(data:$imageType;base64," . base64_encode($imageData) . ")';</script>";
-            } else {    
-                echo "Erreur lors de l'upload de l'image.";
-            }
-        }
-    
-?>
         </div>
     </div>
 </body>
