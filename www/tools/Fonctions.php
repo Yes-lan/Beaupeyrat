@@ -30,5 +30,13 @@
             die("Erreur de connexion : " . $e->getMessage());
         }
     }
+
+    function checkUserRole($requiredRole) {
+        session_start();
+        if (!isset($_SESSION['role']) || $_SESSION['role'] !== $requiredRole) {
+            header('Location: ../pagination.php');
+            exit;
+        }
+    }
     
 ?>

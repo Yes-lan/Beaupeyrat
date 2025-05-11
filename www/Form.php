@@ -1,27 +1,24 @@
 <?php
-    require './tools/Fonctions.php'; // Inclusion du fichier de fonctions
+    require './tools/Fonctions.php';
+    session_start(); // Démarrage de la session
     $pdo = connexion();
-    
 ?>
-
 <html>
 <head>
     <title>Page de connexion du Formulaire</title>
     <meta charset="UTF-8"> <!-- Encodage des caractères -->
+    <!-- Importation de la police Lato depuis Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
-
     <!-- Feuille de style  -->
-    <link href="./style/form.css" rel="stylesheet">
+    <link href="./asset/form.css" rel="stylesheet">
     <!-- Importation de Font Awesome pour les icônes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
 <div class="wrapper">
-
-    
     <div id="formContent">
         <!-- Formulaire de connexion -->
-        <form method="post" >
+        <form method="post" action="/pagination.php" >
             <input type="text" id="login" name="login" placeholder="login" required>
             
             <br>
@@ -30,15 +27,12 @@
                 <input type="password" id="password"  name="password" placeholder="password" required style="width: 100%; padding-right: 40px;">
                 <i class="fas fa-eye" id="togglePassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
             </div>
-            
-            
             <!-- Case à cocher pour se souvenir de l'utilisateur -->
             <input type="checkbox" id="check" name="check" value="true"> se souvenir de moi 
             <br>
             <br>
             <!-- Bouton de redirection vers la page d'inscription -->
             <button class="boutton_enregistrement" onclick="window.location.href='./inscription.php'">inscription</button>
-
             <!-- Bouton de soumission du formulaire -->
             <input type="submit" name="Valider" value="Se connecter"  >
         </form>
@@ -51,8 +45,6 @@
                 $login = $_POST['login'];
                 $password = $_POST['password'];
                 
-            
-
                 // Préparation de la requête SQL pour sécuriser contre les injections SQL
                 $sql = "SELECT * FROM user WHERE login = :login";
                 $stmt = $pdo->prepare($sql);
@@ -65,10 +57,20 @@
                 if ($stmt->rowCount() > 0) {
                     $user = $stmt->fetch(PDO::FETCH_ASSOC);
                     
+                    // Debug : Vérifiez la valeur de $user['role']
+                    error_log("Rôle récupéré depuis la base de données : " . $user['role']);
 
                     // Vérifie si le mot de passe saisi correspond au mot de passe haché en base de données
                     if (password_verify($password, $user['password'])) {
-                        echo "Connexion réussie.";
+                        // Connexion réussie : définir les informations de l'utilisateur dans la session
+
+                        $_SESSION['role'] = $user['role']; // Récupérer le rôle depuis la base de données
+
+                        // Debug : Vérifiez que $_SESSION['role'] est correctement défini
+                        error_log("Rôle défini dans la session : " . $_SESSION['role']);
+
+                        header('Location: /pagination.php'); // Redirection après connexion
+                        exit;
                     } else {
                         echo "Login ou mot de passe incorrect.";
                     }

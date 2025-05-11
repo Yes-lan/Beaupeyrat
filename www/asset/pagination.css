@@ -1,0 +1,68 @@
+/* Style général */
+body {
+    font-family: 'Lato', 'sans-serif';
+    background: linear-gradient(135deg, #2F9C95, #664147);
+    margin: 0;
+    padding: 0;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+table {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 20px auto;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background: #2F9C95;
+    color: #fff;
+    font-weight: bold;
+}
+
+tr:hover {
+    background: #f5f5f5;
+}
+
+.pagination {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.pagination a {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #2F9C95;
+    border: 1px solid #2F9C95;
+    border-radius: 5px;
+    transition: background 0.3s, color 0.3s;
+}
+
+.pagination a:hover {
+    background: #2F9C95;
+    color: #fff;
+}
+
+.pagination strong {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 10px 15px;
+    background: #2F9C95;
+    color: #fff;
+    border-radius: 5px;
+}
