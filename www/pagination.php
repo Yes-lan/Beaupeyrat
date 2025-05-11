@@ -19,7 +19,7 @@ error_log("Rôle actuel dans la session : " . ($_SESSION['role'] ?? 'Non défini
     </head>
     <body>
         <div style="text-align: left;">
-            <?php if ($_SESSION['role'] !== 'invite'): ?>
+            <?php if ($_SESSION['role'] !== 'invite' && $_SESSION['role'] === 'admin'): ?>
                 <p>Utilisateur connecté (Rôle : <strong><?php echo htmlspecialchars($_SESSION['role']); ?></strong>)</p>
             <?php else: ?>
                 <p>Utilisateur non connecté</p>
@@ -28,6 +28,7 @@ error_log("Rôle actuel dans la session : " . ($_SESSION['role'] ?? 'Non défini
                 <button onclick="window.location.href='./admin/index_administrateur.php'" style="margin-bottom: 20px;">Accéder à la page administrateur</button>
             <?php endif; ?>
             <center>
+            <h1>Liste des films</h1>
             <table>
                 <?php
                 // Préparation de la requête SQL
