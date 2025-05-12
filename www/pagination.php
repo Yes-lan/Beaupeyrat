@@ -3,13 +3,24 @@ include './tools/fonctions.php';
 session_start();
 $pdo = connexion();
 
+// Simulez un rôle d'administrateur pour le test
+//$_SESSION['role'] = "admin";
+
 // Vérifiez si la clé 'role' est définie dans $_SESSION
 if (!isset($_SESSION['role']) || $_SESSION['role'] === null) {
     $_SESSION['role'] = 'invite'; // Définit 'invite' par défaut si le rôle est NULL
 }
 
-// Debug : Affichez les valeurs de session
-error_log("Rôle actuel dans la session : " . ($_SESSION['role'] ?? 'Non défini'));
+// Gestion du logout
+if (isset($_POST['logout'])) {
+    session_destroy(); // Détruit la session
+    header('Location: ./Form.php'); // Redirige vers la page de connexion
+    exit;
+}
+
+// Debugging après les en-têtes
+
+var_dump($_SESSION);
 ?>
 <!DOCTYPE html>
 <html>
@@ -94,5 +105,10 @@ error_log("Rôle actuel dans la session : " . ($_SESSION['role'] ?? 'Non défini
             </table>
             </center>
         </div>
+        <form method="post" style="text-align: right; margin: 10px;">
+            <button type="submit" name="logout" style="background-color: #f44336; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
+                Logout
+            </button>
+        </form>
     </body>
 </html>

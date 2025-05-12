@@ -23,6 +23,10 @@ $stmt->execute();
     <header>
         <center>
         <h1>Page Administrateur</h1>
+        <!-- Bouton Retour -->
+        <button onclick="window.location.href='../pagination.php'" style="margin-top: 10px; background-color:rgb(0, 0, 0); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
+            Retour à la pagination
+        </button>
         </center>
     </header>
     <div>
